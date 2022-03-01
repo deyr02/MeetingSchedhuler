@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/all_contacts"
+            android:icon="@drawable/ic_contacts_all"
+            android:title="All Contacts" />
+        <item
+            android:id="@+id/important_contacts"
+            android:icon="@drawable/ic_important"
+            android:title="Important Contacts" />
+        <item
+            android:id="@+id/favourite_contacts"
+            android:icon="@drawable/ic_favourite"
+            android:title="Favourite Contacts" />
+
+    </group>
+</menu>
