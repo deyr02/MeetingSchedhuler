@@ -12,7 +12,7 @@
         <activity
             android:name=".AddContact"
             android:exported="false"
-            android:label="add Contact"
+            android:label="Add New Contact"
             android:parentActivityName=".MainActivity"
             />
         <activity
