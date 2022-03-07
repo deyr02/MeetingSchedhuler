@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_call.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_facebook.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_instagram.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_linkedin.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_sms.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_square_down_caret.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_square_up_caret.xml" value="0.5475" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/drawable/ic_website.xml" value="0.5475" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/activity_add_contact.xml" value="0.33559782608695654" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/contact_row.xml" value="0.67" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/activity_send_sms.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/contact_row.xml" value="0.42117117117117114" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/fragment_all_contacts.xml" value="0.33" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/fragment_favourite_contact.xml" value="0.33559782608695654" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/MeetingSchedhuler/app/src/main/res/layout/fragment_important_contact.xml" value="0.33559782608695654" />
