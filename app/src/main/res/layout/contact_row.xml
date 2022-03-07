@@ -47,18 +47,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/contact_fullName" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btn_favourite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/purple_200"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_important"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_favourite" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/btn_important"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@color/purple_200"

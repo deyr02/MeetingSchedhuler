@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 import javax.xml.transform.Result;
@@ -164,5 +166,53 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      return  output;
     }
 
+    public  long toggleContactType(Integer id, ContactType contactType){
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String queryType = "";
+            switch (contactType){
+                case IMPORTANT:
+                    queryType = CONTACT_IS_IMPORTANT;
+                    break;
+                case FAVOURITE:
+                    queryType= CONTACT_IS_FAVOURITE;
+                    break;
+                default:
+                    queryType = "";
+                    break;
+            }
+            if (queryType != ""){
+                String  checkingQuery = "SELECT " + queryType + " FROM " +TABLE_CONTACT + " WHERE " + CONTACT_ID + " = " + id +";";
+                Cursor cursor = db.rawQuery(checkingQuery, null);
+                if(cursor.getCount() == 0){
+                    return  -1;
+                }
+                cursor.moveToFirst();
+                Integer result = Integer.parseInt( cursor.getString(0));
+
+                SQLiteDatabase db_w= this.getWritableDatabase();
+                ContentValues cv = new ContentValues();
+
+                if(result ==0){
+                    cv.put(queryType, 1);
+                }
+                else {
+                    cv.put(queryType, 0);
+                }
+                return  db_w.update(TABLE_CONTACT, cv, "_id=?", new String[]{id.toString()});
+            }
+
+            return  1;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
+        finally {
+            this.close();
+        }
+
+    }
 
 }
+
