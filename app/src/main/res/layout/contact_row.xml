@@ -68,16 +68,16 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="376dp"
+                android:layout_width="300dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="4dp"
 
 
-                android:gravity="end"
+                android:gravity="start"
                 app:layout_constraintBottom_toBottomOf="parent"
 
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.457"
+                app:layout_constraintHorizontal_bias="0.045"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contact_number"
                 app:layout_constraintVertical_bias="0.0">
@@ -99,6 +99,7 @@
                     android:id="@+id/btn_collapse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/ic_square_down_caret" />
 
 
@@ -109,7 +110,7 @@
                 android:layout_width="376dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="4dp"
-                android:gravity="end"
+                android:gravity="start"
                 android:visibility="gone"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,34 +122,58 @@
                     android:id="@+id/contact_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     app:srcCompat="@drawable/ic_email" />
 
                 <ImageButton
                     android:id="@+id/contact_facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     app:srcCompat="@drawable/ic_facebook" />
 
                 <ImageButton
                     android:id="@+id/contact_linkedIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     app:srcCompat="@drawable/ic_linkedin" />
 
                 <ImageButton
                     android:id="@+id/contact_instagram"
                     android:layout_width="wrap_content"
+                    android:visibility="gone"
+
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_instagram" />
 
                 <ImageButton
                     android:id="@+id/contact_website"
                     android:layout_width="wrap_content"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_website"
 
                     />
             </LinearLayout>
+
+
+
+
+
+            <ImageButton
+                android:id="@+id/btn_details"
+                android:layout_width="68dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/btn_important"
+                app:srcCompat="@drawable/ic_right_arrow" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

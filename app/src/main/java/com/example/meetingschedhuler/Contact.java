@@ -6,6 +6,7 @@ public class Contact {
 
     private String _firstName, _lastName, _cellPhone, _email, _facebook, _linkedIn, _instagram,
                     _website, _streetAddress, _suburb, _city, _postalCOde, _country;
+    public Contact(){}
 
     public  Contact(
             Integer Id,

@@ -46,7 +46,7 @@ public class AddContact extends AppCompatActivity {
                     txt_lastName.getText().toString().trim(),
                     txt_cellPhone.getText().toString().trim(),
                     txt_email.getText().toString().trim(),
-                    txt_firstName.getText().toString().trim(),
+                    txt_facebook.getText().toString().trim(),
                     txt_linkedin.getText().toString().trim(),
                     txt_instagram.getText().toString().trim(),
                     txt_website.getText().toString().trim(),
@@ -67,6 +67,19 @@ public class AddContact extends AppCompatActivity {
             }
             else {
                 Toast.makeText(AddContact.this, "New Contact added successfully", Toast.LENGTH_SHORT).show();
+                txt_firstName.setText("");
+                txt_lastName.setText("");
+                txt_cellPhone.setText("");
+                txt_email.setText("");
+                txt_facebook.setText("");
+                txt_linkedin.setText("");
+                txt_instagram.setText("");
+                txt_website.setText("");
+                txt_streetAddress.setText("");
+                txt_suburb.setText("");
+                txt_city.setText("");
+                txt_postalCode.setText("");
+                txt_country.setText("");
             }
         }
     }

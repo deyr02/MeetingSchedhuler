@@ -115,6 +115,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             cv.put(CONTACT_COUNTRY, contact.get_country());
 
             long result = db.insert(TABLE_CONTACT, null, cv);
+            db.close();
             return result;
         }
         catch (Exception ex){
@@ -123,52 +124,65 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Contact> getAllContacts(){
-     ArrayList<Contact>output = new ArrayList<>();
-     SQLiteDatabase db = this.getReadableDatabase();
-     String query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0" + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
+        ArrayList<Contact>output = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+            String query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0" + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
 
-        Cursor cursor = null;
-        if(db != null){
-            cursor = db.rawQuery(query, null);
-            if (cursor.getCount() == 0){
-                return output;
+            Cursor cursor = null;
+            if(db != null){
+                cursor = db.rawQuery(query, null);
+                if (cursor.getCount() == 0){
+                    return output;
+                }
+
+                cursor.moveToFirst();
+
+                do{
+                    Contact contact = new Contact(
+                            Integer.parseInt( cursor.getString(0)),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+
+                            Integer.parseInt( cursor.getString(9)),
+                            Integer.parseInt( cursor.getString(10)),
+                            Integer.parseInt( cursor.getString(11)),
+
+                            cursor.getString(12),
+                            cursor.getString(13),
+                            cursor.getString(14),
+                            cursor.getString(15),
+                            cursor.getString(16)
+                    );
+
+                    output.add(contact);
+
+                }while (cursor.moveToNext());
             }
 
-            cursor.moveToFirst();
-
-            do{
-                Contact contact = new Contact(
-                       Integer.parseInt( cursor.getString(0)),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getString(7),
-                        cursor.getString(8),
-
-                       Integer.parseInt( cursor.getString(9)),
-                       Integer.parseInt( cursor.getString(10)),
-                       Integer.parseInt( cursor.getString(11)),
-
-                        cursor.getString(12),
-                        cursor.getString(13),
-                        cursor.getString(14),
-                        cursor.getString(15),
-                        cursor.getString(16)
-                );
-
-                output.add(contact);
-
-            }while (cursor.moveToNext());
+            return  output;
         }
-     return  output;
+        catch (Exception ex){
+            ex.printStackTrace();
+            return  null;
+        }
+        finally {
+            db.close();
+        }
+
+
     }
 
     public  long toggleContactType(Integer id, ContactType contactType){
+        SQLiteDatabase db = this.getReadableDatabase();
+
         try{
-            SQLiteDatabase db = this.getReadableDatabase();
             String queryType = "";
             switch (contactType){
                 case IMPORTANT:
@@ -209,10 +223,57 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return -1;
         }
         finally {
-            this.close();
+            db.close();
         }
 
     }
+
+
+    public Contact getContactDetail(Integer id){
+        Contact output = new Contact();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+            String query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE " +CONTACT_ID +" = " + id + " ;";
+            if(db != null) {
+               Cursor cursor = db.rawQuery(query, null);
+                if (cursor.getCount() == 0) {
+                    return output;
+                }
+                cursor.moveToFirst();
+                output = new Contact(
+                        Integer.parseInt( cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+
+                        Integer.parseInt( cursor.getString(9)),
+                        Integer.parseInt( cursor.getString(10)),
+                        Integer.parseInt( cursor.getString(11)),
+
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14),
+                        cursor.getString(15),
+                        cursor.getString(16)
+                );
+            }
+            return output;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+        finally {
+            db.close();
+        }
+
+    }
+
 
 }
 

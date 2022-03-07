@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -47,6 +48,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         initializeComponents(holder, position);
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+        //details view
+        holder.btn_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ContactDetails.class);
+                intent.putExtra("ISMainUser", 0);
+                intent.putExtra("_id", String.valueOf(contacts.get(position).get_id()));
+                context.startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////
         //Collapsable Social Links
         holder.btn_collapse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +108,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         });
 
         ///////////////////////////////////////////////////////////////////////////////////////////
-        //Send SMS
+        //Toggle Favourite
 
         holder.btn_favourite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +132,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                }
             }
         });
-
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //Toggle Important
         holder.btn_important.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +157,77 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //Send Email
+        holder.btn_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent email_intent = new Intent( context, SendEmail.class);
+                email_intent.putExtra("EmailAddress", String.valueOf(contacts.get(position).get_email()));
+                context.startActivity(email_intent);
+            }
+        });
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //Facebook
+        holder.btn_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_facebook()));
+                    context.startActivity(browserIntent);
+                }
+                catch ( Exception ex){
+                    Toast.makeText(context, "The facebook profile can not be open", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //linkedIn
+        holder.btn_linkedIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_linkedIn()));
+                    context.startActivity(browserIntent);
+                }
+                catch ( Exception ex){
+                    Toast.makeText(context, "The LinkedIn profile can not be open", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //Instagram
+        holder.btn_instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_instagram()));
+                    context.startActivity(browserIntent);
+                }
+                catch ( Exception ex){
+                    Toast.makeText(context, "The Instagram profile can not be open", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //website
+        holder.btn_website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_website()));
+                    context.startActivity(browserIntent);
+                }
+                catch ( Exception ex){
+                    Toast.makeText(context, "The website link can not be open", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
 
     private void initializeComponents(MyViewHolder holder, int position) {
@@ -156,6 +247,36 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             holder.btn_important.setImageResource(R.drawable.ic_important);
         }
 
+        if(
+                contacts.get(position).get_email().length() == 0 &&
+                        contacts.get(position).get_facebook().length() == 0 &&
+                        contacts.get(position).get_linkedIn().length() == 0 &&
+                        contacts.get(position).get_instagram().length() == 0 &&
+                        contacts.get(position).get_website().length() == 0
+        ){
+            holder.btn_collapse.setVisibility(View.GONE);
+        }
+        else {
+            holder.btn_collapse.setVisibility(View.VISIBLE);
+
+            if(contacts.get(position).get_email().length() != 0 ){
+                holder.btn_email.setVisibility(View.VISIBLE);
+            }
+            if(contacts.get(position).get_facebook().length() != 0 ){
+                holder.btn_facebook.setVisibility(View.VISIBLE);
+            }
+            if(contacts.get(position).get_linkedIn().length() != 0 ){
+                holder.btn_linkedIn.setVisibility(View.VISIBLE);
+            }
+            if(contacts.get(position).get_instagram().length() != 0 ){
+                holder.btn_instagram.setVisibility(View.VISIBLE);
+            }
+            if(contacts.get(position).get_website().length() != 0 ){
+                holder.btn_website.setVisibility(View.VISIBLE);
+            }
+
+        }
+
 
     }
 
@@ -169,7 +290,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView contactName, cellphone;
         LinearLayout mainLayout;
         LinearLayout layout_socialMedias;
-        ImageButton btn_favourite, btn_important, btn_collapse, btn_call, btn_sms;
+        ImageButton btn_favourite, btn_important, btn_collapse, btn_call, btn_sms,
+                btn_email, btn_facebook, btn_linkedIn, btn_instagram, btn_website,
+                btn_details;
         Boolean isSocialMediaOpen = false;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -183,6 +306,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             btn_collapse = itemView.findViewById(R.id.btn_collapse);
             btn_call = itemView.findViewById(R.id.contact_call);
             btn_sms = itemView.findViewById(R.id.contact_sms);
+
+            btn_email = itemView.findViewById(R.id.contact_email);
+            btn_facebook = itemView.findViewById(R.id.contact_facebook);
+            btn_linkedIn = itemView.findViewById(R.id.contact_linkedIn);
+            btn_instagram = itemView.findViewById(R.id.contact_instagram);
+            btn_website = itemView.findViewById(R.id.contact_website);
+
+            btn_details = itemView.findViewById(R.id.btn_details);
 
             layout_socialMedias = itemView.findViewById(R.id.linearLayout_socialMedias);
 

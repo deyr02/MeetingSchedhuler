@@ -13,14 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetingSchedhuler">
         <activity
+            android:name=".ContactDetails"
+            android:exported="false"
+            android:label="Contact Details"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".SendEmail"
+            android:exported="false"
+            android:label="Send Email"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".AddContact"
             android:exported="false"
             android:label="Add New Contact"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SendSMS"
+        <activity
+            android:name=".SendSMS"
             android:exported="false"
             android:label="Send Message"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
