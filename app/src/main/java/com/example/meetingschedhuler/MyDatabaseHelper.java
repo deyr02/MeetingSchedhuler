@@ -82,6 +82,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         //Creating the table
         sqLiteDatabase.execSQL(create_contact_table);
+        sqLiteDatabase.close();
     }
 
     @Override
@@ -94,8 +95,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
     public  long addContact(Contact contact){
+        SQLiteDatabase db = this.getReadableDatabase();
+
         try{
-            SQLiteDatabase db = this.getReadableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(CONTACT_FIRSTNAME, contact.get_firstName());
             cv.put(CONTACT_LASTNAME, contact.get_lastName());
@@ -115,11 +117,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             cv.put(CONTACT_COUNTRY, contact.get_country());
 
             long result = db.insert(TABLE_CONTACT, null, cv);
-            db.close();
             return result;
         }
         catch (Exception ex){
             return -1;
+        }
+        finally {
+            db.close();
         }
     }
 
@@ -273,6 +277,54 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public  long updateContactDetails(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            ContentValues cv = new ContentValues();
+            cv.put(CONTACT_FIRSTNAME, contact.get_firstName());
+            cv.put(CONTACT_LASTNAME, contact.get_lastName());
+            cv.put(CONTACT_CELLPHONE, contact.get_cellPhone());
+            cv.put(CONTACT_EMAIL, contact.get_email());
+            cv.put(CONTACT_FACEBOOK, contact.get_facebook());
+            cv.put(CONTACT_LINKEDIN, contact.get_linkedIn());
+            cv.put(CONTACT_INSTAGRAM, contact.get_instagram());
+            cv.put(CONTACT_WEBSITE, contact.get_website());
+            cv.put(CONTACT_IS_FAVOURITE, contact.get_is_favourite());
+            cv.put(CONTACT_IS_IMPORTANT, contact.get_is_important());
+            cv.put(CONTACT_IS_MAIN_USER, contact.get_is_main_user());
+            cv.put(CONTACT_STREET_ADDRESS, contact.get_streetAddress());
+            cv.put(CONTACT_SUBURB, contact.get_suburb());
+            cv.put(CONTACT_CITY, contact.get_city());
+            cv.put(CONTACT_POSTAL_CODE, contact.get_postalCOde());
+            cv.put(CONTACT_COUNTRY, contact.get_country());
+
+            return db.update(TABLE_CONTACT, cv, "_id=?", new String[]{""+contact.get_id()});
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
+        finally {
+            db.close();
+        }
+    }
+
+    public long deleteContactDetail(Integer id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            return db.delete(TABLE_CONTACT, "_id=?", new String[]{""+id});
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
+        finally {
+            db.close();
+        }
+
+    }
+
 
 
 }

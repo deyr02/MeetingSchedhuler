@@ -65,15 +65,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_firstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="371dp"
+            android:layout_height="48dp"
             android:layout_marginTop="4dp"
-            android:textStyle="italic"
-            android:textSize="18dp"
+            android:inputType="text"
+            android:hint="Insert First Name"
             android:text="TextView"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_firstName" />
 
@@ -88,35 +90,41 @@
             app:layout_constraintStart_toStartOf="@+id/txt_firstName"
             app:layout_constraintTop_toBottomOf="@+id/txt_firstName" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_lastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="371dp"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:hint="Insert last name"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_lastName"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_lastName" />
 
         <TextView
             android:id="@+id/lbl_cellphone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Cellphone"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/txt_lastName"
+            app:layout_constraintStart_toStartOf="@+id/lbl_lastName"
             app:layout_constraintTop_toBottomOf="@+id/txt_lastName" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_cellphone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="371dp"
+            android:layout_height="48dp"
+            android:inputType="phone"
+            android:hint="Insert cellphone number"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_cellphone"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_cellphone" />
 
         <TextView
@@ -130,14 +138,18 @@
             app:layout_constraintStart_toStartOf="@+id/txt_cellphone"
             app:layout_constraintTop_toBottomOf="@+id/txt_cellphone" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_email"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:hint="Inset Email address"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_email"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_email" />
 
         <TextView
@@ -151,14 +163,18 @@
             app:layout_constraintStart_toStartOf="@+id/txt_email"
             app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_facebook"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:hint="Insert Facebook profile URL"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_facebook"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_facebook" />
 
         <TextView
@@ -172,14 +188,18 @@
             app:layout_constraintStart_toStartOf="@+id/txt_facebook"
             app:layout_constraintTop_toBottomOf="@+id/txt_facebook" />
 
-        <TextView
+        <EditText
             android:id="@+id/txt_linkedin"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:hint="Insert LinkedIn profile URL"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_linkedIn"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_linkedIn" />
 
         <TextView
@@ -193,13 +213,15 @@
             app:layout_constraintStart_toStartOf="@+id/txt_linkedin"
             app:layout_constraintTop_toBottomOf="@+id/txt_linkedin"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_instagram"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:text="TextView"
-            android:textStyle="italic"
+            android:hint="Insert Instagram profile URL"
             android:textSize="18dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/lbl_instagram"
             app:layout_constraintTop_toBottomOf="@+id/lbl_instagram" />
 
@@ -214,13 +236,15 @@
             app:layout_constraintStart_toStartOf="@+id/txt_instagram"
             app:layout_constraintTop_toBottomOf="@+id/txt_instagram"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_website"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Insert website URL"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/lbl_website"
             app:layout_constraintTop_toBottomOf="@+id/lbl_website" />
 
@@ -235,13 +259,15 @@
             app:layout_constraintStart_toStartOf="@+id/txt_website"
             app:layout_constraintTop_toBottomOf="@+id/txt_website"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_streetAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:text="TextView"
-            android:textStyle="italic"
+            android:hint="Insert street Address"
             android:textSize="18dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/lbl_streetAddress"
             app:layout_constraintTop_toBottomOf="@+id/lbl_streetAddress" />
 
@@ -256,13 +282,15 @@
             app:layout_constraintStart_toStartOf="@+id/txt_streetAddress"
             app:layout_constraintTop_toBottomOf="@+id/txt_streetAddress"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_suburb"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Insert suburb"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/lbl_suburb"
             app:layout_constraintTop_toBottomOf="@+id/lbl_suburb" />
 
@@ -277,14 +305,17 @@
             app:layout_constraintStart_toStartOf="@+id/txt_suburb"
             app:layout_constraintTop_toBottomOf="@+id/txt_suburb"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_city"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Insert city"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_city"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
 
         <TextView
@@ -298,14 +329,17 @@
             app:layout_constraintStart_toStartOf="@+id/txt_city"
             app:layout_constraintTop_toBottomOf="@+id/txt_city"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_postalCode"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Insert postal code"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/lbl_postalCode"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_postalCode" />
 
         <TextView
@@ -319,15 +353,18 @@
             app:layout_constraintStart_toStartOf="@+id/txt_postalCode"
             app:layout_constraintTop_toBottomOf="@+id/txt_postalCode"/>
 
-        <TextView
+        <EditText
             android:id="@+id/txt_country"
-            android:layout_width="wrap_content"
+            android:layout_width="371dp"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Insert country name"
             android:text="TextView"
-            android:textStyle="italic"
             android:textSize="18dp"
+            android:textStyle="italic"
 
-            app:layout_constraintStart_toStartOf="@+id/lbl_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_country" />
 
         <LinearLayout
@@ -346,12 +383,14 @@
                 android:id="@+id/switch_favourite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:text="Favourite" />
 
             <Switch
                 android:id="@+id/switch_important"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:text="Important" />
         </LinearLayout>
 
