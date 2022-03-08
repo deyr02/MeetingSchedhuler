@@ -1,9 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactDetails">
+    android:padding="5dp"
+    android:tooltipText="Contact Details"
+    tools:context=".ContactDetails"
+    tools:ignore="SpeakableTextPresentCheck">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Edit Contact Details"
+                app:srcCompat="@drawable/ic_edit"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Delete Contact Details"
+                app:srcCompat="@drawable/ic_delete" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="205dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/teal_200"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/default_image" />
+
+        <TextView
+            android:id="@+id/lbl_firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:text="First Name :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/txt_firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_firstName" />
+
+        <TextView
+            android:id="@+id/lbl_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Last Name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_firstName"
+            app:layout_constraintTop_toBottomOf="@+id/txt_firstName" />
+
+        <TextView
+            android:id="@+id/txt_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_lastName"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_lastName" />
+
+        <TextView
+            android:id="@+id/lbl_cellphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Cellphone"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_lastName"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lastName" />
+
+        <TextView
+            android:id="@+id/txt_cellphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_cellphone"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_cellphone" />
+
+        <TextView
+            android:id="@+id/lbl_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Email"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_cellphone"
+            app:layout_constraintTop_toBottomOf="@+id/txt_cellphone" />
+
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_email"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_email" />
+
+        <TextView
+            android:id="@+id/lbl_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="facebook"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_email"
+            app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+        <TextView
+            android:id="@+id/txt_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_facebook" />
+
+        <TextView
+            android:id="@+id/lbl_linkedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="LinkedIn"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/txt_facebook" />
+
+        <TextView
+            android:id="@+id/txt_linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_linkedIn"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_linkedIn" />
+
+        <TextView
+            android:id="@+id/lbl_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Instagram"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_linkedin"
+            app:layout_constraintTop_toBottomOf="@+id/txt_linkedin"/>
+
+        <TextView
+            android:id="@+id/txt_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_instagram"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_instagram" />
+
+        <TextView
+            android:id="@+id/lbl_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Website"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_instagram"
+            app:layout_constraintTop_toBottomOf="@+id/txt_instagram"/>
+
+        <TextView
+            android:id="@+id/txt_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_website"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_website" />
+
+        <TextView
+            android:id="@+id/lbl_streetAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="StreetAddress"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_website"
+            app:layout_constraintTop_toBottomOf="@+id/txt_website"/>
+
+        <TextView
+            android:id="@+id/txt_streetAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_streetAddress"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_streetAddress" />
+
+        <TextView
+            android:id="@+id/lbl_suburb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="suburb"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_streetAddress"
+            app:layout_constraintTop_toBottomOf="@+id/txt_streetAddress"/>
+
+        <TextView
+            android:id="@+id/txt_suburb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_suburb"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_suburb" />
+
+        <TextView
+            android:id="@+id/lbl_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="City"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_suburb"
+            app:layout_constraintTop_toBottomOf="@+id/txt_suburb"/>
+
+        <TextView
+            android:id="@+id/txt_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_city"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
+
+        <TextView
+            android:id="@+id/lbl_postalCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Postal Code :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_city"
+            app:layout_constraintTop_toBottomOf="@+id/txt_city"/>
+
+        <TextView
+            android:id="@+id/txt_postalCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_postalCode"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_postalCode" />
+
+        <TextView
+            android:id="@+id/lbl_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Country :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_postalCode"
+            app:layout_constraintTop_toBottomOf="@+id/txt_postalCode"/>
+
+        <TextView
+            android:id="@+id/txt_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textStyle="italic"
+            android:textSize="18dp"
+
+            app:layout_constraintStart_toStartOf="@+id/lbl_country"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_country" />
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="1.0">
+
+            <Switch
+                android:id="@+id/switch_favourite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Favourite" />
+
+            <Switch
+                android:id="@+id/switch_important"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Important" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
