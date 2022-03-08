@@ -5,16 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.util.ArrayList;
 
 import javax.xml.transform.Result;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
+
 
     private  final  Context context;
 
@@ -51,6 +54,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////////
 
 
+
+    //////////////////////////////////////////////////////////////////
+    //Image
+    //////////////////////////////////////////////////////////////////
+    private  static  final String TABLE_IMAGE = "Image";
+    private  static final String IMAGE_ID = "_id";
+    private  static final String IMAGE_CONTACT_ID = "_contactId";
+    private  static final String IMAGE_IS_PROFILE_PICTURE = "IsProfilePicture";
+    private  static final String IMAGE = "Image";
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private byte[] imageInBytes;
+
+
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -80,9 +100,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 CONTACT_POSTAL_CODE+ " TEXT,  "+
                 CONTACT_COUNTRY+ " TEXT);";
 
-        //Creating the table
+        //Creating Contact Table
         sqLiteDatabase.execSQL(create_contact_table);
-        sqLiteDatabase.close();
+
+        String create_image_table = "CREATE TABLE " + TABLE_IMAGE + " (" +
+                 IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                IMAGE_CONTACT_ID + " INTEGER NOT NULL,  " +
+                IMAGE_IS_PROFILE_PICTURE + " INTEGER, "  +
+                IMAGE + " BLOB NOT NULL," +
+                "FOREIGN KEY (" +IMAGE_CONTACT_ID + ") REFERENCES " + TABLE_CONTACT + "("  +CONTACT_ID+"));";
+        sqLiteDatabase.execSQL(create_image_table);
+
     }
 
     @Override
@@ -326,6 +354,31 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public long addImage(Image image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+
+            Bitmap imageToStore = image.getImage();
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            imageToStore.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            imageInBytes = byteArrayOutputStream.toByteArray();
+
+            ContentValues cv = new ContentValues();
+            cv.put(IMAGE_CONTACT_ID, image.get_contactId());
+            cv.put(IMAGE_IS_PROFILE_PICTURE, image.getIsProfilePicture());
+            cv.put(IMAGE, imageInBytes);
+
+            return db.insert(TABLE_IMAGE, null ,cv);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return  -1;
+
+        }
+        finally {
+            db.close();
+        }
+    }
 
 }
 

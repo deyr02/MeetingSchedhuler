@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class ContactDetails extends AppCompatActivity {
     Switch sw_faviourite, sw_important;
 
     ImageButton btn_edit, btn_delete;
-
+    ImageView iv_profile_image_view;
 
 
     @Override
@@ -36,6 +37,8 @@ public class ContactDetails extends AppCompatActivity {
         setContentView(R.layout.activity_contact_details);
 
         initializeAndBindData();
+
+
 
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +99,19 @@ public class ContactDetails extends AppCompatActivity {
             }
         });
 
+        iv_profile_image_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               openGallery(view);
+            }
+        });
+
+    }
+
+    public void openGallery(View view){
+        Intent intent = new Intent(ContactDetails.this, ImageGallery.class);
+        intent.putExtra("ContactID", contactDetails.get_id());
+        startActivity(intent);
     }
 
     private void updateContactDetails() {
@@ -162,6 +178,8 @@ public class ContactDetails extends AppCompatActivity {
         btn_edit = findViewById(R.id.btn_Edit);
         btn_edit = findViewById(R.id.btn_Edit);
         btn_delete = findViewById(R.id.btn_delete);
+
+        iv_profile_image_view = findViewById(R.id.profile_image_view);
 
         myDatabaseHelper = new MyDatabaseHelper(ContactDetails.this);
         if(getIntent().hasExtra("_id")){
