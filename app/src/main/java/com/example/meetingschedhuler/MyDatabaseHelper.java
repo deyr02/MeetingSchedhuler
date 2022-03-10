@@ -156,7 +156,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-
+/*
     public ArrayList<Contact> getAllContacts(){
         ArrayList<Contact>output = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -214,6 +214,82 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+    */
+
+    public ArrayList<Contact> getAllContacts(ContactType contactType){
+        ArrayList<Contact>output = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "";
+        switch (contactType){
+            case IMPORTANT:
+                query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0"
+                        + "AND " + CONTACT_IS_IMPORTANT +" = 1"
+                        + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
+                break;
+            case FAVOURITE:
+                query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0"
+                        + "AND " + CONTACT_IS_FAVOURITE +" = 1"
+                        + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
+                break;
+            case NORMAL:
+                query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0" + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
+                break;
+        }
+
+        try{
+            Cursor cursor = null;
+            if(db != null){
+                cursor = db.rawQuery(query, null);
+                if (cursor.getCount() == 0){
+                    return output;
+                }
+
+                cursor.moveToFirst();
+
+                do{
+                    Contact contact = new Contact(
+                            Integer.parseInt( cursor.getString(0)),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+
+                            Integer.parseInt( cursor.getString(9)),
+                            Integer.parseInt( cursor.getString(10)),
+                            Integer.parseInt( cursor.getString(11)),
+
+                            cursor.getString(12),
+                            cursor.getString(13),
+                            cursor.getString(14),
+                            cursor.getString(15),
+                            cursor.getString(16)
+                    );
+
+                    Bitmap profileImage = this.getProfileImage( Integer.parseInt( cursor.getString(0)));
+                    contact.set_profileImage(profileImage);
+                    output.add(contact);
+
+                }while (cursor.moveToNext());
+            }
+
+            return  output;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return  null;
+        }
+        finally {
+            db.close();
+        }
+
+
+    }
+
+
 
     public  long toggleContactType(Integer id, ContactType contactType){
         SQLiteDatabase db = this.getReadableDatabase();

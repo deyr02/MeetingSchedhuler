@@ -41,7 +41,7 @@ public class AllContactFragment extends Fragment {
         });
 
         myDatabaseHelper = new MyDatabaseHelper(rootView.getContext());
-        contacts = myDatabaseHelper.getAllContacts();
+        contacts = myDatabaseHelper.getAllContacts(ContactType.NORMAL);
         //Toast.makeText(rootView.getContext(), ""+ contacts.size(), Toast.LENGTH_SHORT).show();
 
         customAdapter = new CustomAdapter (rootView.getContext(), contacts);
