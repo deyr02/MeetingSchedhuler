@@ -15,84 +15,79 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
-            android:background="@color/purple_200"
-            android:padding="12dp">
+            android:paddingBottom="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/baby_blue">
+
 
             <TextView
                 android:id="@+id/contact_fullName"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_width="376dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/iv_main_profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/iv_main_profile_image" />
 
             <TextView
                 android:id="@+id/contact_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="20dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.014"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/contact_fullName"
                 app:layout_constraintTop_toBottomOf="@+id/contact_fullName" />
 
             <ImageButton
                 android:id="@+id/btn_favourite"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/purple_200"
-                app:layout_constraintEnd_toStartOf="@+id/btn_important"
-
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="Save as favourite"
+                app:layout_constraintStart_toEndOf="@+id/btn_important"
+                app:layout_constraintTop_toTopOf="@+id/btn_important"
                 app:srcCompat="@drawable/ic_favourite" />
 
             <ImageButton
                 android:id="@+id/btn_important"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@color/purple_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="64dp"
+                android:contentDescription="Save as important"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_profile_image"
+                app:layout_constraintTop_toTopOf="@+id/iv_main_profile_image"
                 app:srcCompat="@drawable/ic_important" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
+                android:layout_width="370dp"
+                android:layout_height="50dp"
+                android:background="@color/cardview_shadow_start_color"
+
                 android:layout_marginTop="4dp"
-
-
-                android:gravity="start"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.045"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contact_number"
-                app:layout_constraintVertical_bias="0.0">
+                android:gravity="end"
+                app:layout_constraintStart_toStartOf="@+id/contact_number"
+                app:layout_constraintTop_toBottomOf="@+id/contact_number">
 
 
                 <ImageButton
                     android:id="@+id/contact_call"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Call"
                     app:srcCompat="@drawable/ic_call" />
 
                 <ImageButton
                     android:id="@+id/contact_sms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Message"
                     app:srcCompat="@drawable/ic_sms" />
 
                 <ImageButton
@@ -107,14 +102,13 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout_socialMedias"
-                android:layout_width="376dp"
+                android:layout_width="370dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:gravity="start"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:background="@color/cardview_shadow_start_color"
                 android:visibility="gone"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
 
@@ -145,35 +139,41 @@
                 <ImageButton
                     android:id="@+id/contact_instagram"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
-
                     android:layout_height="wrap_content"
+
+                    android:visibility="gone"
                     app:srcCompat="@drawable/ic_instagram" />
 
                 <ImageButton
                     android:id="@+id/contact_website"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/ic_website"
 
                     />
             </LinearLayout>
 
-
-
-
-
             <ImageButton
                 android:id="@+id/btn_details"
-                android:layout_width="68dp"
-                android:layout_height="72dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="133dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="20dp"
+                android:tooltipText="Contact Details"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.555"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                app:layout_constraintTop_toBottomOf="@+id/btn_important"
+                app:layout_constraintTop_toTopOf="@+id/btn_favourite"
                 app:srcCompat="@drawable/ic_right_arrow" />
+
+            <ImageView
+                android:id="@+id/iv_main_profile_image"
+                android:layout_width="174dp"
+                android:layout_height="146dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/default_image" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

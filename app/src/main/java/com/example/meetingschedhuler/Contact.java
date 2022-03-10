@@ -1,8 +1,20 @@
 package com.example.meetingschedhuler;
 
+import android.graphics.Bitmap;
+
 public class Contact {
 
     private  int _id , _is_favourite, _is_important, _is_main_user;
+
+    public Bitmap get_profileImage() {
+        return _profileImage;
+    }
+
+    public void set_profileImage(Bitmap _profileImage) {
+        this._profileImage = _profileImage;
+    }
+
+    private Bitmap _profileImage;
 
     private String _firstName, _lastName, _cellPhone, _email, _facebook, _linkedIn, _instagram,
                     _website, _streetAddress, _suburb, _city, _postalCOde, _country;

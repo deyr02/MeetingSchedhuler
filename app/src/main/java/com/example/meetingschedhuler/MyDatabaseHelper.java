@@ -6,12 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Console;
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 import javax.xml.transform.Result;
@@ -193,6 +195,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                             cursor.getString(16)
                     );
 
+                    Bitmap profileImage = this.getProfileImage( Integer.parseInt( cursor.getString(0)));
+                    contact.set_profileImage(profileImage);
                     output.add(contact);
 
                 }while (cursor.moveToNext());
@@ -293,6 +297,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(15),
                         cursor.getString(16)
                 );
+                Bitmap profileImage = this.getProfileImage( Integer.parseInt( cursor.getString(0)));
+                output.set_profileImage(profileImage);
+
             }
             return output;
         }
@@ -374,6 +381,106 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             ex.printStackTrace();
             return  -1;
 
+        }
+        finally {
+            db.close();
+        }
+    }
+
+    public  ArrayList<Image> getAllImages(Integer contactID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Image> output = new ArrayList<Image>();
+        try{
+            String query = "SELECT * FROM " +TABLE_IMAGE+ " WHERE " + IMAGE_CONTACT_ID + " = "+ contactID+
+                    " ORDER BY "+ IMAGE_ID +" DESC";
+            Cursor cursor = null;
+            if(db != null){
+                cursor = db.rawQuery(query, null);
+                if (cursor.getCount() == 0){
+                    return output;
+                }
+                cursor.moveToFirst();
+                do{
+                    byte[] re_image_bytes = cursor.getBlob(3);
+                    Bitmap imageBitmap = BitmapFactory.decodeByteArray(re_image_bytes, 0, re_image_bytes.length);
+
+                    Image image = new Image(
+                            Integer.parseInt( cursor.getString(0)),
+                            Integer.parseInt( cursor.getString(1)),
+                            Integer.parseInt(cursor.getString(2)),
+                            imageBitmap);
+                    output.add(image);
+                }while (cursor.moveToNext());
+            }
+            return  output;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+        finally {
+            db.close();
+        }
+    }
+    private Bitmap getProfileImage(Integer ContactID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+            String query = "SELECT IMAGE FROM " + TABLE_IMAGE + " WHERE " +IMAGE_CONTACT_ID + " = " + ContactID + " AND " + IMAGE_IS_PROFILE_PICTURE + " =  1";
+            Cursor cursor = null;
+            Bitmap imageBitmap = null;
+            if(db != null){
+                cursor = db.rawQuery(query, null);
+                if (cursor.getCount() == 0){
+                    return null;
+                }
+                cursor.moveToFirst();
+                    byte[] re_image_bytes = cursor.getBlob(0);
+                    imageBitmap = BitmapFactory.decodeByteArray(re_image_bytes, 0, re_image_bytes.length);
+            }
+            return  imageBitmap;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        finally {
+            db.close();
+        }
+    }
+
+    public  long deleteImage(Integer id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            return db.delete(TABLE_IMAGE, "_id=?", new String[]{""+id});
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return  -1;
+        }
+        finally {
+            db.close();
+        }
+
+    }
+
+    public  long  setProfileImage (Integer _imageID, Integer _imageContactID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            ContentValues cv = new ContentValues();
+            cv.put(IMAGE_IS_PROFILE_PICTURE, 0);
+            long output =0;
+           long result =  db.update(TABLE_IMAGE, cv,"_contactId=?", new String[]{_imageContactID.toString()});
+            if (result != -1){
+               ContentValues cv1 = new ContentValues();
+               cv1.put(IMAGE_IS_PROFILE_PICTURE, 1);
+               output = db.update(TABLE_IMAGE, cv1,"_id=?", new String[]{_imageID.toString()});
+           }
+           return  output;
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return  -1;
         }
         finally {
             db.close();

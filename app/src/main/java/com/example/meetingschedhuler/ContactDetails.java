@@ -110,7 +110,7 @@ public class ContactDetails extends AppCompatActivity {
 
     public void openGallery(View view){
         Intent intent = new Intent(ContactDetails.this, ImageGallery.class);
-        intent.putExtra("ContactID", contactDetails.get_id());
+        intent.putExtra("ContactID",String.valueOf(_id));
         startActivity(intent);
     }
 
@@ -149,8 +149,7 @@ public class ContactDetails extends AppCompatActivity {
             }
             else {
                 Toast.makeText(ContactDetails.this,
-                       contact.get_facebook(),
-                        ///"Contact Details updated successfully",
+                        "Contact Details updated successfully",
                         Toast.LENGTH_SHORT).show();
 
             }
@@ -191,6 +190,10 @@ public class ContactDetails extends AppCompatActivity {
             ab.setTitle(contactDetails.get_firstName()+ " "+ contactDetails.get_lastName());
         }
 
+
+        if(contactDetails.get_profileImage() != null){
+            iv_profile_image_view.setImageBitmap(contactDetails.get_profileImage());
+        }
 
         enableField(false);
 

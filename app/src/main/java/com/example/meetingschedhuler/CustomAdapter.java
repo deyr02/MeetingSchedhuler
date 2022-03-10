@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -231,8 +232,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     private void initializeComponents(MyViewHolder holder, int position) {
-        holder.contactName.setText(contacts.get(position).get_firstName() + " " + contacts.get(position).get_lastName());
-        holder.cellphone.setText(contacts.get(position).get_cellPhone());
+        holder.contactName.setText("Name: "+contacts.get(position).get_firstName() + " " + contacts.get(position).get_lastName());
+        holder.cellphone.setText("Cell: "+contacts.get(position).get_cellPhone());
+
+        if(contacts.get(position).get_profileImage() != null){
+            holder.iv_main_profile_image.setImageBitmap(contacts.get(position).get_profileImage());
+        }
 
         if(contacts.get(position).get_is_favourite() ==1){
             holder.btn_favourite.setImageResource(R.drawable.ic_favourite_selected);
@@ -293,6 +298,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         ImageButton btn_favourite, btn_important, btn_collapse, btn_call, btn_sms,
                 btn_email, btn_facebook, btn_linkedIn, btn_instagram, btn_website,
                 btn_details;
+        ImageView iv_main_profile_image ;
         Boolean isSocialMediaOpen = false;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -314,6 +320,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             btn_website = itemView.findViewById(R.id.contact_website);
 
             btn_details = itemView.findViewById(R.id.btn_details);
+            iv_main_profile_image =  itemView.findViewById(R.id.iv_main_profile_image);
 
             layout_socialMedias = itemView.findViewById(R.id.linearLayout_socialMedias);
 
