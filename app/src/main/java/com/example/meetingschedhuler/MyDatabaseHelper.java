@@ -223,12 +223,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         switch (contactType){
             case IMPORTANT:
                 query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0"
-                        + "AND " + CONTACT_IS_IMPORTANT +" = 1"
+                        + " AND " + CONTACT_IS_IMPORTANT +" = 1"
                         + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
                 break;
             case FAVOURITE:
                 query = "SELECT * FROM " +TABLE_CONTACT+ " WHERE  IsMainUser = 0"
-                        + "AND " + CONTACT_IS_FAVOURITE +" = 1"
+                        + " AND " + CONTACT_IS_FAVOURITE +" = 1"
                         + " ORDER BY "+ CONTACT_FIRSTNAME +" ASC";
                 break;
             case NORMAL:

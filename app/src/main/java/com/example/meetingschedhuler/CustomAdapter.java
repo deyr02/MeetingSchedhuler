@@ -46,7 +46,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        initializeComponents(holder, position);
+        initializeComponents(holder, holder.getAdapterPosition());
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         //details view
@@ -55,7 +55,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View view) {
                 Intent intent = new Intent(context, ContactDetails.class);
                 intent.putExtra("ISMainUser", 0);
-                intent.putExtra("_id", String.valueOf(contacts.get(position).get_id()));
+                intent.putExtra("_id", String.valueOf(contacts.get(holder.getAdapterPosition()).get_id()));
                 context.startActivity(intent);
 
 
@@ -89,7 +89,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.btn_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String CallingNumber = contacts.get(position).get_cellPhone().toString();
+                String CallingNumber = contacts.get(holder.getAdapterPosition()).get_cellPhone().toString();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse(("tel:"+ CallingNumber)));
                 context.startActivity(intent);
@@ -102,7 +102,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SendSMS.class);
-                intent.putExtra("PhoneNumber", String.valueOf(contacts.get(position).get_cellPhone()));
+                intent.putExtra("PhoneNumber", String.valueOf(contacts.get(holder.getAdapterPosition()).get_cellPhone()));
                 context.startActivity(intent);
 
             }
@@ -114,16 +114,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.btn_favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               int i = contacts.get(position).get_is_favourite();
+               int i = contacts.get(holder.getAdapterPosition()).get_is_favourite();
                if(i == 0){
                    holder.btn_favourite.setImageResource(R.drawable.ic_favourite_selected);
-                   contacts.get(position).set_is_favourite(1);
+                   contacts.get(holder.getAdapterPosition()).set_is_favourite(1);
                }else {
                    holder.btn_favourite.setImageResource(R.drawable.ic_favourite);
-                   contacts.get(position).set_is_favourite(0);
+                   contacts.get(holder.getAdapterPosition()).set_is_favourite(0);
 
                }
-              long result = myDatabaseHelper.toggleContactType(contacts.get(position).get_id(), ContactType.FAVOURITE);
+              long result = myDatabaseHelper.toggleContactType(contacts.get(holder.getAdapterPosition()).get_id(), ContactType.FAVOURITE);
                if(result == 1){
                    Toast.makeText(view.getContext(), "The selected contact saved as favourite", Toast.LENGTH_SHORT).show();
                }
@@ -138,16 +138,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.btn_important.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int i = contacts.get(position).get_is_important();
+                int i = contacts.get(holder.getAdapterPosition()).get_is_important();
                 if(i == 0){
                     holder.btn_important.setImageResource(R.drawable.ic_important_selected);
-                    contacts.get(position).set_is_important(1);
+                    contacts.get(holder.getAdapterPosition()).set_is_important(1);
                 }else {
                     holder.btn_important.setImageResource(R.drawable.ic_important);
-                    contacts.get(position).set_is_important(0);
+                    contacts.get(holder.getAdapterPosition()).set_is_important(0);
 
                 }
-                long result = myDatabaseHelper.toggleContactType(contacts.get(position).get_id(), ContactType.IMPORTANT);
+                long result = myDatabaseHelper.toggleContactType(contacts.get(holder.getAdapterPosition()).get_id(), ContactType.IMPORTANT);
                 if(result == 1){
                     Toast.makeText(view.getContext(), "The selected contact saved as important", Toast.LENGTH_SHORT).show();
                 }
@@ -164,7 +164,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent email_intent = new Intent( context, SendEmail.class);
-                email_intent.putExtra("EmailAddress", String.valueOf(contacts.get(position).get_email()));
+                email_intent.putExtra("EmailAddress", String.valueOf(contacts.get(holder.getAdapterPosition()).get_email()));
                 context.startActivity(email_intent);
             }
         });
@@ -176,7 +176,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 try{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_facebook()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(holder.getAdapterPosition()).get_facebook()));
                     context.startActivity(browserIntent);
                 }
                 catch ( Exception ex){
@@ -191,7 +191,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 try{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_linkedIn()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(holder.getAdapterPosition()).get_linkedIn()));
                     context.startActivity(browserIntent);
                 }
                 catch ( Exception ex){
@@ -205,7 +205,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 try{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_instagram()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(holder.getAdapterPosition()).get_instagram()));
                     context.startActivity(browserIntent);
                 }
                 catch ( Exception ex){
@@ -219,7 +219,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 try{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(position).get_website()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contacts.get(holder.getAdapterPosition()).get_website()));
                     context.startActivity(browserIntent);
                 }
                 catch ( Exception ex){
@@ -232,20 +232,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     private void initializeComponents(MyViewHolder holder, int position) {
-        holder.contactName.setText("Name: "+contacts.get(position).get_firstName() + " " + contacts.get(position).get_lastName());
-        holder.cellphone.setText("Cell: "+contacts.get(position).get_cellPhone());
+        holder.contactName.setText("Name: "+contacts.get(holder.getAdapterPosition()).get_firstName() + " " + contacts.get(holder.getAdapterPosition()).get_lastName());
+        holder.cellphone.setText("Cell: "+contacts.get(holder.getAdapterPosition()).get_cellPhone());
 
-        if(contacts.get(position).get_profileImage() != null){
-            holder.iv_main_profile_image.setImageBitmap(contacts.get(position).get_profileImage());
+        if(contacts.get(holder.getAdapterPosition()).get_profileImage() != null){
+            holder.iv_main_profile_image.setImageBitmap(contacts.get(holder.getAdapterPosition()).get_profileImage());
         }
 
-        if(contacts.get(position).get_is_favourite() ==1){
+        if(contacts.get(holder.getAdapterPosition()).get_is_favourite() ==1){
             holder.btn_favourite.setImageResource(R.drawable.ic_favourite_selected);
         }
         else {
             holder.btn_favourite.setImageResource(R.drawable.ic_favourite);
         }
-        if(contacts.get(position).get_is_important() ==1){
+        if(contacts.get(holder.getAdapterPosition()).get_is_important() ==1){
             holder.btn_important.setImageResource(R.drawable.ic_important_selected);
         }
         else {
@@ -254,29 +254,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         if(
                 contacts.get(position).get_email().length() == 0 &&
-                        contacts.get(position).get_facebook().length() == 0 &&
-                        contacts.get(position).get_linkedIn().length() == 0 &&
-                        contacts.get(position).get_instagram().length() == 0 &&
-                        contacts.get(position).get_website().length() == 0
+                        contacts.get(holder.getAdapterPosition()).get_facebook().length() == 0 &&
+                        contacts.get(holder.getAdapterPosition()).get_linkedIn().length() == 0 &&
+                        contacts.get(holder.getAdapterPosition()).get_instagram().length() == 0 &&
+                        contacts.get(holder.getAdapterPosition()).get_website().length() == 0
         ){
             holder.btn_collapse.setVisibility(View.GONE);
         }
         else {
             holder.btn_collapse.setVisibility(View.VISIBLE);
 
-            if(contacts.get(position).get_email().length() != 0 ){
+            if(contacts.get(holder.getAdapterPosition()).get_email().length() != 0 ){
                 holder.btn_email.setVisibility(View.VISIBLE);
             }
-            if(contacts.get(position).get_facebook().length() != 0 ){
+            if(contacts.get(holder.getAdapterPosition()).get_facebook().length() != 0 ){
                 holder.btn_facebook.setVisibility(View.VISIBLE);
             }
-            if(contacts.get(position).get_linkedIn().length() != 0 ){
+            if(contacts.get(holder.getAdapterPosition()).get_linkedIn().length() != 0 ){
                 holder.btn_linkedIn.setVisibility(View.VISIBLE);
             }
-            if(contacts.get(position).get_instagram().length() != 0 ){
+            if(contacts.get(holder.getAdapterPosition()).get_instagram().length() != 0 ){
                 holder.btn_instagram.setVisibility(View.VISIBLE);
             }
-            if(contacts.get(position).get_website().length() != 0 ){
+            if(contacts.get(holder.getAdapterPosition()).get_website().length() != 0 ){
                 holder.btn_website.setVisibility(View.VISIBLE);
             }
 
