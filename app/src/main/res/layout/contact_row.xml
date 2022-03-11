@@ -14,7 +14,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/baby_blue"
             android:paddingBottom="15dp">
@@ -59,10 +59,11 @@
                 android:id="@+id/btn_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+
+                android:layout_marginEnd="8dp"
                 android:visibility="visible"
-                app:layout_constraintStart_toEndOf="@+id/btn_favourite"
-                app:layout_constraintTop_toTopOf="@+id/btn_favourite"
+                app:layout_constraintEnd_toStartOf="@+id/btn_details"
+                app:layout_constraintTop_toTopOf="@+id/btn_details"
                 app:srcCompat="@drawable/ic_square_down_caret" />
 
             <ImageButton
@@ -85,11 +86,12 @@
                 android:layout_marginTop="12dp"
                 android:background="@color/cardview_shadow_start_color"
                 android:gravity="end"
-                android:visibility="gone"
                 android:padding="3dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.636"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_main_profile_image">
+                app:layout_constraintTop_toBottomOf="@+id/btn_details">
 
                 <ImageButton
                     android:id="@+id/contact_call"
@@ -97,13 +99,6 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="Call"
                     app:srcCompat="@drawable/ic_call" />
-
-                <ImageButton
-                    android:id="@+id/contact_sms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="Message"
-                    app:srcCompat="@drawable/ic_sms" />
 
                 <ImageButton
                     android:id="@+id/contact_email"
@@ -154,17 +149,25 @@
                     app:srcCompat="@drawable/ic_baseline_location_on_24"
 
                     />
+
+                <ImageButton
+                    android:id="@+id/contact_sms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Message"
+                    app:srcCompat="@drawable/ic_sms" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btn_details"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="4dp"
 
                 android:layout_marginTop="8dp"
+
+                android:layout_marginEnd="20dp"
                 android:tooltipText="Contact Details"
-                app:layout_constraintStart_toEndOf="@+id/btn_collapse"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contact_number"
                 app:srcCompat="@drawable/ic_right_arrow" />
 

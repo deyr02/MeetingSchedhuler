@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ArrayList<Contact> FilterContact(ArrayList<Contact> list, String searchString){
         ArrayList<Contact> output = new ArrayList<Contact>();
         for(Integer i =0; i<list.size(); i++){
-            if((list.get(i).get_firstName() + " "+ list.get(i).get_lastName()).contains(searchString)){
+            if((list.get(i).get_firstName().toLowerCase() + " "+ list.get(i).get_lastName().toLowerCase()).contains(searchString.toLowerCase())){
                 output.add(list.get(i));
             }
         }
