@@ -228,23 +228,61 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+        holder.btn_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context, ContactLocation.class);
+                String address = formatAddress( new String[]{contacts.get(holder.getAdapterPosition()).get_streetAddress(),
+                        contacts.get(holder.getAdapterPosition()).get_suburb(),
+                        contacts.get(holder.getAdapterPosition()).get_city(),
+                        contacts.get(holder.getAdapterPosition()).get_country()});
+                intent.putExtra("Address", address);
+                intent.putExtra("Name", contacts.get(holder.getAdapterPosition()).get_firstName());
+                context.startActivity(intent);
+
+            }
+        });
+
 
     }
+
+    //checks  null
+    //helper method to format address
+    public String formatAddress(String[] value){
+        String output ="";
+        for(Integer i =0; i<value.length; i++){
+           if(value[i] != ""){
+               output += value[i]+",";
+           }
+        }
+        if(output != ""){
+            StringBuilder sb = new StringBuilder(output);
+            sb.deleteCharAt(sb.length()-1);
+            output= sb.toString()+".";
+        }
+        return  output;
+    }
+
 
     private void initializeComponents(MyViewHolder holder, int position) {
         holder.contactName.setText("Name: "+contacts.get(holder.getAdapterPosition()).get_firstName() + " " + contacts.get(holder.getAdapterPosition()).get_lastName());
         holder.cellphone.setText("Cell: "+contacts.get(holder.getAdapterPosition()).get_cellPhone());
 
+        //profile_image
         if(contacts.get(holder.getAdapterPosition()).get_profileImage() != null){
             holder.iv_main_profile_image.setImageBitmap(contacts.get(holder.getAdapterPosition()).get_profileImage());
         }
 
+        //favourite button
         if(contacts.get(holder.getAdapterPosition()).get_is_favourite() ==1){
             holder.btn_favourite.setImageResource(R.drawable.ic_favourite_selected);
         }
         else {
             holder.btn_favourite.setImageResource(R.drawable.ic_favourite);
         }
+
+        //Important contact
         if(contacts.get(holder.getAdapterPosition()).get_is_important() ==1){
             holder.btn_important.setImageResource(R.drawable.ic_important_selected);
         }
@@ -252,12 +290,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             holder.btn_important.setImageResource(R.drawable.ic_important);
         }
 
+
+        //if there is there is no contact type(email, facebook, etc) are not available then hide
+        //the collapse button
+
+
+        //full address (postal code removed intentionally)
+        String  address = contacts.get(holder.getAdapterPosition()).get_streetAddress() +
+                contacts.get(holder.getAdapterPosition()).get_suburb()+
+                contacts.get(holder.getAdapterPosition()).get_city()+
+                contacts.get(holder.getAdapterPosition()).get_country();
+
         if(
                 contacts.get(position).get_email().length() == 0 &&
                         contacts.get(holder.getAdapterPosition()).get_facebook().length() == 0 &&
                         contacts.get(holder.getAdapterPosition()).get_linkedIn().length() == 0 &&
                         contacts.get(holder.getAdapterPosition()).get_instagram().length() == 0 &&
-                        contacts.get(holder.getAdapterPosition()).get_website().length() == 0
+                        contacts.get(holder.getAdapterPosition()).get_website().length() == 0 &&
+                        address.length() == 0
         ){
             holder.btn_collapse.setVisibility(View.GONE);
         }
@@ -279,7 +329,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             if(contacts.get(holder.getAdapterPosition()).get_website().length() != 0 ){
                 holder.btn_website.setVisibility(View.VISIBLE);
             }
-
+            if(address.length() != 0){
+                holder.btn_location.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -297,7 +349,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         LinearLayout layout_socialMedias;
         ImageButton btn_favourite, btn_important, btn_collapse, btn_call, btn_sms,
                 btn_email, btn_facebook, btn_linkedIn, btn_instagram, btn_website,
-                btn_details;
+                btn_location, btn_details;
         ImageView iv_main_profile_image ;
         Boolean isSocialMediaOpen = false;
         public MyViewHolder(@NonNull View itemView) {
@@ -318,7 +370,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             btn_linkedIn = itemView.findViewById(R.id.contact_linkedIn);
             btn_instagram = itemView.findViewById(R.id.contact_instagram);
             btn_website = itemView.findViewById(R.id.contact_website);
-
+            btn_location = itemView.findViewById(R.id.contact_location);
             btn_details = itemView.findViewById(R.id.btn_details);
             iv_main_profile_image =  itemView.findViewById(R.id.iv_main_profile_image);
 

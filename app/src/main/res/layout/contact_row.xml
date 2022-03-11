@@ -152,6 +152,14 @@
                     app:srcCompat="@drawable/ic_website"
 
                     />
+                <ImageButton
+                    android:id="@+id/contact_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_baseline_location_on_24"
+
+                    />
             </LinearLayout>
 
             <ImageButton
