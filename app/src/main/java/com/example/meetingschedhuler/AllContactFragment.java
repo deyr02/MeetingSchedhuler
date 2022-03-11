@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class AllContactFragment extends Fragment {
     MyDatabaseHelper myDatabaseHelper;
     ArrayList<Contact> contacts;
     CustomAdapter customAdapter;
+    ImageView no_record_found;
 
     @Nullable
     @Override
@@ -37,6 +39,8 @@ public class AllContactFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_all_contacts, container, false);
         recyclerView_all_contacts = rootView.findViewById(R.id.recycler_view_all_contacts);
         add_new_contact = rootView.findViewById(R.id.add_new_contact);
+        no_record_found = rootView.findViewById(R.id.no_record_found);
+
         add_new_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +52,10 @@ public class AllContactFragment extends Fragment {
        // myDatabaseHelper = new MyDatabaseHelper(rootView.getContext());
        // contacts = myDatabaseHelper.getAllContacts(ContactType.NORMAL);
         //Toast.makeText(rootView.getContext(), ""+ contacts.size(), Toast.LENGTH_SHORT).show();
+
+        if (this.contacts.size() == 0){
+            no_record_found.setVisibility(View.VISIBLE);
+        }
 
         customAdapter = new CustomAdapter (rootView.getContext(), contacts);
 

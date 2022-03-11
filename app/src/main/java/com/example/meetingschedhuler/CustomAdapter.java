@@ -302,6 +302,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 contacts.get(holder.getAdapterPosition()).get_country();
 
         if(
+                contacts.get(position).get_cellPhone().toString().length() == 0 &&
                 contacts.get(position).get_email().length() == 0 &&
                         contacts.get(holder.getAdapterPosition()).get_facebook().length() == 0 &&
                         contacts.get(holder.getAdapterPosition()).get_linkedIn().length() == 0 &&

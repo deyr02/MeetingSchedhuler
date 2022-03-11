@@ -11,7 +11,6 @@
         android:id="@+id/recycler_view_all_contacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,4 +26,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add" />
+
+    <ImageView
+        android:id="@+id/no_record_found"
+        android:layout_width="259dp"
+        android:layout_height="167dp"
+        android:layout_marginTop="220dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recycler_view_all_contacts"
+        app:srcCompat="@mipmap/img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

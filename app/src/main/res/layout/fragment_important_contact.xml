@@ -15,6 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/no_record_found"
+        android:layout_width="259dp"
+        android:layout_height="167dp"
+        android:layout_marginTop="220dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recycler_view_important_contacts"
+        app:srcCompat="@mipmap/img" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_new_contact_important"
         android:layout_width="wrap_content"
