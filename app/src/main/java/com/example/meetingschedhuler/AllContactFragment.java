@@ -20,6 +20,11 @@ import java.util.ArrayList;
 public class AllContactFragment extends Fragment {
 
     private  View rootView;
+
+    public AllContactFragment(ArrayList<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     RecyclerView recyclerView_all_contacts;
     FloatingActionButton add_new_contact;
     MyDatabaseHelper myDatabaseHelper;
@@ -40,8 +45,8 @@ public class AllContactFragment extends Fragment {
             }
         });
 
-        myDatabaseHelper = new MyDatabaseHelper(rootView.getContext());
-        contacts = myDatabaseHelper.getAllContacts(ContactType.NORMAL);
+       // myDatabaseHelper = new MyDatabaseHelper(rootView.getContext());
+       // contacts = myDatabaseHelper.getAllContacts(ContactType.NORMAL);
         //Toast.makeText(rootView.getContext(), ""+ contacts.size(), Toast.LENGTH_SHORT).show();
 
         customAdapter = new CustomAdapter (rootView.getContext(), contacts);
