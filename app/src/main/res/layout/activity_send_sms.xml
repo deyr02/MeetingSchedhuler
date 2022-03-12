@@ -8,59 +8,67 @@
     tools:context=".SendSMS">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number :"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.006"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/sendSMS_phoneNumber"
-        android:layout_width="265dp"
-        android:layout_height="19dp"
-        android:text="02102960832"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number :"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:id="@+id/sendSMS_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:text="02102960832"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/sendSMS_Message"
-        android:layout_width="372dp"
-        android:layout_height="403dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/teal_200"
-        android:gravity="start|top"
-        android:hint="Message"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/sndSMs_btn_send"
-        android:layout_width="137dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="108dp"
-        android:text="Send"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendSMS_Message"
-        app:layout_constraintVertical_bias="0.0" />
+            <EditText
+                android:id="@+id/sendSMS_Message"
+                android:layout_width="372dp"
+                android:layout_height="403dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/teal_200"
+                android:gravity="start|top"
+                android:hint="Message"
+                android:inputType="textMultiLine"
+                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end">
+                <Button
+                    android:id="@+id/sndSMs_btn_send"
+                    android:layout_width="137dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="108dp"
+                    android:text="Send" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
