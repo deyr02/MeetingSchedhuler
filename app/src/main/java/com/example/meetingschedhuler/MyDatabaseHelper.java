@@ -24,13 +24,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private  final  Context context;
 
     //Database details
-    private  static  final  String DATABASE_NAME = "ContactScheduler";
+    private  static  final  String DATABASE_NAME = "MeetingScheduler";
     private  static  final int DATABASE_VERSION = 1;
 
     /////////////////////////////////////////////////////////////
     //CONTACT TABLE
     /////////////////////////////////////////////////////////////
-    private  static  final String TABLE_CONTACT = "Contact";
+    private  static  final String TABLE_CONTACT = "tbContact";
     private  static final String CONTACT_ID = "_id";
     private  static final String CONTACT_FIRSTNAME = "FirstName";
     private  static final String CONTACT_LASTNAME = "LastName";
@@ -60,7 +60,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////////
     //Image
     //////////////////////////////////////////////////////////////////
-    private  static  final String TABLE_IMAGE = "Image";
+    private  static  final String TABLE_IMAGE = "tbImage";
     private  static final String IMAGE_ID = "_id";
     private  static final String IMAGE_CONTACT_ID = "_contactId";
     private  static final String IMAGE_IS_PROFILE_PICTURE = "IsProfilePicture";
